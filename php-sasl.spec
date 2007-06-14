@@ -6,7 +6,7 @@
 Summary:	Cyrus SASL Extension
 Name:		php-%{modname}
 Version:	0.1.0
-Release:	%mkrel 14
+Release:	%mkrel 15
 Group:		Development/PHP
 License:	PHP License
 URL:		http://pecl.php.net/package/sasl
@@ -14,8 +14,6 @@ Source0:	sasl-%{version}.tar.bz2
 Patch0:		sasl-0.1.0-lib64.diff
 BuildRequires:	php-devel >= 3:5.2.0
 BuildRequires:	libsasl-devel
-Provides:	php5-sasl
-Obsoletes:	php5-sasl
 Epoch:		1
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
@@ -34,6 +32,16 @@ implementation entirely in PHP.
 %patch0 -p0
 
 %build
+export CFLAGS="%{optflags}"
+export CXXFLAGS="%{optflags}"
+export FFLAGS="%{optflags}"
+
+%if %mdkversion >= 200710
+export CFLAGS="$CFLAGS -fstack-protector"
+export CXXFLAGS="$CXXFLAGS -fstack-protector"
+export FFLAGS="$FFLAGS -fstack-protector"
+%endif
+
 export SASL_SUB="sasl"
 
 phpize
@@ -64,5 +72,3 @@ EOF
 %doc docs tests
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/php.d/%{inifile}
 %attr(0755,root,root) %{_libdir}/php/extensions/%{soname}
-
-
