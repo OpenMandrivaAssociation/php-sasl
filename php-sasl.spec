@@ -6,7 +6,7 @@
 Summary:	Cyrus SASL Extension
 Name:		php-%{modname}
 Version:	0.1.0
-Release:	%mkrel 15
+Release:	%mkrel 16
 Group:		Development/PHP
 License:	PHP License
 URL:		http://pecl.php.net/package/sasl
@@ -32,15 +32,7 @@ implementation entirely in PHP.
 %patch0 -p0
 
 %build
-export CFLAGS="%{optflags}"
-export CXXFLAGS="%{optflags}"
-export FFLAGS="%{optflags}"
-
-%if %mdkversion >= 200710
-export CFLAGS="$CFLAGS -fstack-protector"
-export CXXFLAGS="$CXXFLAGS -fstack-protector"
-export FFLAGS="$FFLAGS -fstack-protector"
-%endif
+%serverbuild
 
 export SASL_SUB="sasl"
 
