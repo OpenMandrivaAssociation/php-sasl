@@ -15,6 +15,7 @@ Patch0:		sasl-0.1.0-lib64.diff
 BuildRequires:	php-devel >= 3:5.2.0
 BuildRequires:	libsasl-devel
 Epoch:		1
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 SASL is the Simple Authentication and Security Layer (as defined by RFC 2222).
