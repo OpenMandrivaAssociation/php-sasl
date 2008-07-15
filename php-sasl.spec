@@ -6,7 +6,7 @@
 Summary:	Cyrus SASL Extension
 Name:		php-%{modname}
 Version:	0.1.0
-Release:	%mkrel 20
+Release:	%mkrel 21
 Group:		Development/PHP
 License:	PHP License
 URL:		http://pecl.php.net/package/sasl
@@ -15,7 +15,7 @@ Patch0:		sasl-0.1.0-lib64.diff
 BuildRequires:	php-devel >= 3:5.2.0
 BuildRequires:	libsasl-devel
 Epoch:		1
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 SASL is the Simple Authentication and Security Layer (as defined by RFC 2222).
