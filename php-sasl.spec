@@ -12,6 +12,7 @@ License:	PHP License
 URL:		http://pecl.php.net/package/sasl
 Source0:	sasl-%{version}.tar.bz2
 Patch0:		sasl-0.1.0-lib64.diff
+Patch1:		sasl-0.1.0-php54x.diff
 BuildRequires:	php-devel >= 3:5.2.0
 BuildRequires:	libsasl-devel
 Epoch:		1
@@ -30,11 +31,13 @@ implementation entirely in PHP.
 
 %setup -q -n sasl-%{version}
 %patch0 -p0
+%patch1 -p0
 
 %build
 %serverbuild
 
 export SASL_SUB="sasl"
+export SASL_SHARED_LIBADD="-lsasl2"
 
 phpize
 %configure2_5x --with-libdir=%{_lib} \
