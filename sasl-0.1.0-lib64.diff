@@ -1,0 +1,37 @@
+--- config.m4	2004-01-23 09:34:28.000000000 +0100
++++ config.m4.oden	2005-02-12 16:26:57.488970949 +0100
+@@ -29,9 +29,9 @@
+      AC_MSG_ERROR(Please specify path to SASL installation)
+   fi
+ 
+-  AC_MSG_CHECKING(for SASL library in $SASL_DIR/lib)
++  AC_MSG_CHECKING(for SASL library in $SASL_DIR/$PHP_LIBDIR)
+   for i in $SEARCH_LIBS; do
+-    if test -r $SASL_DIR/lib/lib$i.a; then
++    if test -r $SASL_DIR/$PHP_LIBDIR/lib$i.a; then
+       SASL_LIB=$i
+       AC_MSG_RESULT(found -l$i)
+     fi
+@@ -39,19 +39,19 @@
+ 
+   if test -z "$SASL_LIB"; then
+      AC_MSG_RESULT(not found)
+-     AC_MSG_ERROR(Failed to locate a compatible SASL library in $SASL_DIR/lib)
++     AC_MSG_ERROR(Failed to locate a compatible SASL library in $SASL_DIR/$PHP_LIBDIR)
+   fi
+ 
+   LIBSYMBOL=sasl_server_init
+   old_LIBS=$LIBS
+-  LIBS="$LIBS -L$SASL_DIR/lib"
++  LIBS="$LIBS -L$SASL_DIR/$PHP_LIBDIR"
+   AC_CHECK_LIB($SASL_LIB, $LIBSYMBOL, [AC_DEFINE(HAVE_SASL_LIB,1,[ ])],
+                [AC_MSG_ERROR(unknown SASL library or library not found)])
+   LIBS=$old_LIBS
+ 
+   AC_DEFINE(HAVE_SASL,1,[ ])
+   PHP_SUBST(SASL_SHARED_LIBADD)
+-  PHP_ADD_LIBRARY_WITH_PATH($SASL_LIB, $SASL_DIR/lib, SASL_SHARED_LIBADD)
++  PHP_ADD_LIBRARY_WITH_PATH($SASL_LIB, $SASL_DIR/$PHP_LIBDIR, SASL_SHARED_LIBADD)
+   PHP_ADD_INCLUDE($SASL_DIR/include/$SASL_SUB)
+   PHP_NEW_EXTENSION(sasl, sasl.c, $ext_shared)
+ fi

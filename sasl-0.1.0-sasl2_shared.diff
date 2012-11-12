@@ -1,0 +1,11 @@
+--- config.m4	2012-05-02 11:57:29.434017043 +0200
++++ config.m4.oden	2012-05-02 12:03:22.038431367 +0200
+@@ -31,7 +31,7 @@
+ 
+   AC_MSG_CHECKING(for SASL library in $SASL_DIR/$PHP_LIBDIR)
+   for i in $SEARCH_LIBS; do
+-    if test -r $SASL_DIR/$PHP_LIBDIR/lib$i.a; then
++    if test -r $SASL_DIR/$PHP_LIBDIR/lib$i.so; then
+       SASL_LIB=$i
+       AC_MSG_RESULT(found -l$i)
+     fi

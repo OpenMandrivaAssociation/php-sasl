@@ -1,0 +1,11 @@
+--- sasl.c	2004-01-23 09:34:28.000000000 +0100
++++ sasl.c.oden	2012-05-02 10:13:26.540650848 +0200
+@@ -67,7 +67,7 @@ static void php_sasl_destroy_conn(zend_r
+ 
+ /* {{{ sasl_functions[]
+  */
+-function_entry sasl_functions[] = {
++zend_function_entry sasl_functions[] = {
+ 	/* Common Functions */
+ 	PHP_FE(sasl_version,		NULL)
+ 	PHP_FE(sasl_errstring,		NULL)
