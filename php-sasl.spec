@@ -1,22 +1,21 @@
 %define modname sasl
-%define dirname %{modname}
 %define soname %{modname}.so
 %define inifile A40_%{modname}.ini
 
 Summary:	Cyrus SASL Extension
 Name:		php-%{modname}
+Epoch:		1
 Version:	0.1.0
 Release:	44
 Group:		Development/PHP
 License:	PHP License
-URL:		http://pecl.php.net/package/sasl
-Source0:	sasl-%{version}.tar.bz2
+Url:		http://pecl.php.net/package/sasl
+Source0:	http://pecl.php.net/get/sasl-%{version}.tgz
 Patch0:		sasl-0.1.0-lib64.diff
 Patch1:		sasl-0.1.0-php54x.diff
 Patch2:		sasl-0.1.0-sasl2_shared.diff
 BuildRequires:	php-devel >= 3:5.2.0
 BuildRequires:	sasl-devel
-Epoch:		1
 
 %description
 SASL is the Simple Authentication and Security Layer (as defined by RFC 2222).
@@ -28,8 +27,7 @@ To that end, it is possible to build both a client-side and server-side SASL
 implementation entirely in PHP.
 
 %prep
-
-%setup -q -n sasl-%{version}
+%setup -qn sasl-%{version}
 %patch0 -p0
 %patch1 -p0
 %patch2 -p0
@@ -41,15 +39,14 @@ export SASL_SUB="sasl"
 export SASL_SHARED_LIBADD="-lsasl2"
 
 phpize
-%configure2_5x --with-libdir=%{_lib} \
-    --with-%{modname}=shared,%{_prefix}
+%configure2_5x \
+	--with-libdir=%{_lib} \
+	--with-%{modname}=shared,%{_prefix}
 
 %make
 mv modules/*.so .
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
-
 install -d %{buildroot}%{_libdir}/php/extensions
 install -d %{buildroot}%{_sysconfdir}/php.d
 
@@ -72,7 +69,7 @@ if [ "$1" = "0" ]; then
 fi
 
 %files 
-%defattr(-,root,root)
 %doc docs tests
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/php.d/%{inifile}
 %attr(0755,root,root) %{_libdir}/php/extensions/%{soname}
+
