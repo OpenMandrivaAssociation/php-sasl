@@ -6,7 +6,7 @@ Summary:	Cyrus SASL Extension
 Name:		php-%{modname}
 Epoch:		1
 Version:	0.1.0
-Release:	50
+Release:	51
 Group:		Development/PHP
 License:	PHP License
 Url:		http://pecl.php.net/package/sasl
