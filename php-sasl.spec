@@ -9,7 +9,7 @@ Version:	0.1.0
 Release:	53
 Group:		Development/PHP
 License:	PHP License
-Url:		http://pecl.php.net/package/sasl
+Url:		https://pecl.php.net/package/sasl
 Source0:	http://pecl.php.net/get/sasl-%{version}.tgz
 Patch0:		sasl-0.1.0-lib64.diff
 Patch1:		sasl-0.1.0-php54x.diff
